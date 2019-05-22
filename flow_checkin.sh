@@ -4,7 +4,9 @@ CURL='/usr/bin/curl'
 CREDENTIALS='admin@trifacta.local:admin'
 HOST='http://localhost:3005'
 
-# ------- Export a flow, a zip package
+time=$(date +"%d-%m-%y %T")
+
+# ------------- Export a flow (zip package) ---------------
 
 id_flow=6
 
@@ -13,12 +15,9 @@ ENDPOINT="/v4/flows/$id_flow/package"
 
 echo $CURL --user $CREDENTIALS $HOST$ENDPOINT
 
-#$CURL --user $CREDENTIALS $HOST$ENDPOINT > flow.zip
-
 output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT)
 
 echo "$output" > "flow.zip"
-
 
 #output=$( $CURL -sw '%{http_code}' --user $CREDENTIALS $HOST$ENDPOINT)
 #response=$(curl -L -s -o $file -z $file $url -w "%{http_code}")
@@ -31,8 +30,8 @@ echo "$output" > "flow.zip"
 	# $output > flow.zip
 #fi
 
+# -------------  Commit and Push in Github  ---------------
 
-# ------ Commit and Push in Github
-#git add …
-#git commit -m "…"
-#git push
+git add flow.zip
+git commit -m "Version $time"
+git push

@@ -1,8 +1,18 @@
-
 #!/bin/bash      
 CURL='/usr/bin/curl'
-CREDENTIALS='vcoustenoble@trifacta.com:victor'
+CREDENTIALS='admin@trifacta.local:admin'
 HOST='http://localhost:3005'
+
+time=$(date +"%d-%m-%y %T")
+
+# -------------  Checkout last version of the flow ---------------
+
+
+git fetch
+git checkout origin/master -- flow.zip
+
+
+# ------------- Imprt a flow (zip package) in dev env ---------------
 
 
 # Import a flow, a zip package
@@ -14,10 +24,8 @@ ENDPOINT="/v4/flows/package/"
 #  -H 'content-type: multipart/form-data' \
 #  -F data=@path/to/flow.zip
 
+echo $CURL --user $CREDENTIALS $HOST$ENDPOINT
 
-git pull = git fetch + git merge
+output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT --header "Content-Type: multipart/form-data" --request POST --data "./flow.zip")
 
-
-response=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT --header "Content-Type: application/json" --request POST)
-
-echo "job response => $response"
+echo "Import result => $output"
