@@ -8,9 +8,9 @@ time=$(date +"%d-%m-%y %T")
 
 # ------------- Export a flow (zip package) ---------------
 
-id_flow=6
+flow_id=6
 
-ENDPOINT="/v4/flows/$id_flow/package"
+ENDPOINT="/v4/flows/$flow_id/package"
 # GET : result is a zip file
 
 echo $CURL --user $CREDENTIALS $HOST$ENDPOINT
