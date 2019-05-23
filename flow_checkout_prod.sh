@@ -1,7 +1,7 @@
 
 #!/bin/bash      
 CURL='/usr/bin/curl'
-CREDENTIALS='vcoustenoble@trifacta.com:victor'
+CREDENTIALS='deploy@trifacta.local:deploy'
 HOST='http://localhost:3005'
 
 time=$(date +"%d-%m-%y %T")
@@ -13,7 +13,7 @@ git fetch
 git checkout origin/master -- flow.zip
 
 
-# ------------- Imprt a flow (zip package) in dev env in a folder ---------------
+# ------------- Import a flow (zip package) in deployment project ---------------
 
 deploy_id=1
 
@@ -26,8 +26,8 @@ ENDPOINT="/v4/deployments/$deploy_id/releases"
 #  -H 'content-type: multipart/form-data' \
 #  -F data=@path/to/flow.zip
 
-echo $CURL --user $CREDENTIALS $HOST$ENDPOINT --header "Content-Type: multipart/form-data" --request POST -F data=flow.zip
+echo $CURL --user $CREDENTIALS $HOST$ENDPOINT --header "Content-Type: multipart/form-data" --request POST -F data=@flow.zip
 
-output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT --header "Content-Type: multipart/form-data" --request POST -F data=flow.zip)
+output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT --header "Content-Type: multipart/form-data" --request POST -F data=@flow.zip)
 
-echo "Import result => $output"
+echo "Deploy result => $output"
