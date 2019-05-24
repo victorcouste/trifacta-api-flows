@@ -25,16 +25,7 @@ echo $CURL --user $CREDENTIALS $HOST$ENDPOINT -o flow_$flow_id/flow_$flow_id.zip
 
 output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT -o flow_$flow_id/flow_$flow_id.zip)
 
-#output=$( $CURL -sw '%{http_code}' --user $CREDENTIALS $HOST$ENDPOINT)
-#response=$(curl -L -s -o $file -z $file $url -w "%{http_code}")
-#echo $http_code
-
-#if [ $output <> "\"Failed\"" ]
-#then
-#    echo "jjj"
-#else
-	# $output > flow.zip
-#fi
+echo "Export result => $output"
 
 # -------------  Commit and Push in Github  ---------------
 
