@@ -6,18 +6,31 @@ HOST='http://localhost:3005'
 
 time=$(date +"%d-%m-%y %T")
 
+if (( $# < 4 ));
+	then
+		echo "\nPlease call '$0 -f <flow_id> -d <deploy_id>' to run this command\n"
+		exit 1
+   else
+
+		while getopts f:d: option 
+		do 
+ 			case "${option}" 
+ 			in 
+ 			f) flow_id=${OPTARG};; 
+ 			d) deploy_id=${OPTARG};; 
+ 			esac 
+		done
+	fi
+
+echo "Flow ID : "$flow_id
+echo "Deployment ID : "$deploy_id
 
 # -------------  Checkout last version of the flow flow_id---------------
-
-flow_id=9
 
 git fetch
 git checkout origin/master -- flow_$flow_id.zip
 
-
 # ------------- Import a flow (zip package) in deployment project ---------------
-
-deploy_id=1
 
 # Deploy a flow package
 ENDPOINT="/v4/deployments/$deploy_id/releases"

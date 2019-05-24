@@ -11,9 +11,8 @@ time=$(date +"%d-%m-%y %T")
 
 if [ -z "$1" ]
   then
-    #echo "\nPlease call '$0 <argument>' to run this command\n"
-	#exit 1
-	flow_id=9
+    echo "\nPlease call '$0 <argument>' to run this command\n"
+	exit 1
    else
     flow_id=$1
 fi
