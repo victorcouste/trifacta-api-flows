@@ -7,10 +7,12 @@ HOST='http://localhost:3005'
 time=$(date +"%d-%m-%y %T")
 
 
-# -------------  Checkout last version of the flow ---------------
+# -------------  Checkout last version of the flow flow_id---------------
+
+flow_id=9
 
 git fetch
-git checkout origin/master -- flow.zip
+git checkout origin/master -- flow_$flow_id.zip
 
 
 # ------------- Import a flow (zip package) in deployment project ---------------
@@ -26,8 +28,8 @@ ENDPOINT="/v4/deployments/$deploy_id/releases"
 #  -H 'content-type: multipart/form-data' \
 #  -F data=@path/to/flow.zip
 
-echo $CURL --user $CREDENTIALS $HOST$ENDPOINT --header "Content-Type: multipart/form-data" --request POST -F data=@flow.zip
+echo $CURL --user $CREDENTIALS $HOST$ENDPOINT --header "Content-Type: multipart/form-data" --request POST -F data=@flow_$flow_id.zip
 
-output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT --header "Content-Type: multipart/form-data" --request POST -F data=@flow.zip)
+output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT --header "Content-Type: multipart/form-data" --request POST -F data=@flow_$flow_id.zip)
 
 echo "Deploy result => $output"
