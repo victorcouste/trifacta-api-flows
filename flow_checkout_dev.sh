@@ -28,7 +28,7 @@ echo "Folder ID : "$folder_id
 # -------------  Checkout last version of the flow flow_id ---------------
 
 git fetch
-git checkout origin/master -- flow_$flow_id.zip
+git checkout origin/master -- /flow_$flow_id./flow_$flow_id.zip
 
 # ------------- Import a flow (zip package) in dev env folder ---------------
 
@@ -41,8 +41,8 @@ ENDPOINT="/v4/flows/package/?folderId=$folder_id"
 #  -H 'content-type: multipart/form-data' \
 #  -F data=@path/to/flow.zip
 
-echo $CURL --user $CREDENTIALS $HOST$ENDPOINT --header "Content-Type: multipart/form-data" --request POST -F data=@flow_$flow_id.zip
+echo $CURL --user $CREDENTIALS $HOST$ENDPOINT --header "Content-Type: multipart/form-data" --request POST -F data=@flow_$flow_id/flow_$flow_id.zip
 
-output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT --header "Content-Type: multipart/form-data" --request POST -F data=@flow_$flow_id.zip)
+output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT --header "Content-Type: multipart/form-data" --request POST -F data=@flow_$flow_id/flow_$flow_id.zip)
 
 echo "Import result => $output"
