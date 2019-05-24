@@ -38,6 +38,6 @@ output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT -o flow_$flow_id/flow_$flow_i
 
 # -------------  Commit and Push in Github  ---------------
 
-git add /flow_$flow_id/flow_$flow_id.zip
+git add flow_$flow_id/flow_$flow_id.zip
 git commit -m "Version $time"
 git push

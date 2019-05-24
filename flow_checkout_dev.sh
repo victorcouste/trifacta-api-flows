@@ -28,7 +28,7 @@ echo "Folder ID : "$folder_id
 # -------------  Checkout last version of the flow flow_id ---------------
 
 git fetch
-git checkout origin/master -- /flow_$flow_id/flow_$flow_id.zip
+git checkout origin/master -- flow_$flow_id/flow_$flow_id.zip
 
 # ------------- Import a flow (zip package) in dev env folder ---------------
 
