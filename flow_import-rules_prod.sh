@@ -6,6 +6,7 @@ HOST='http://localhost:3005'
 
 time=$(date +"%d-%m-%y %T")
 
+echo
 
 # ------------- Define Deployments Value/Object Import Rules ---------------
 

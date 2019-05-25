@@ -6,8 +6,7 @@ HOST='http://localhost:3005'
 
 time=$(date +"%d-%m-%y %T")
 
-
-# ------------- Run active flow from a deployment project ---------------
+echo
 
 if [ -z "$1" ]
   then
@@ -19,6 +18,10 @@ fi
 
 echo
 echo "Deployment ID : "$deploy_id
+echo
+
+# ------------- Run active flow from a deployment project ---------------
+
 
 # Deploy a flow package
 ENDPOINT="/v4/deployments/$deploy_id/run"
@@ -42,9 +45,10 @@ input_file="customer_1.csv"
 output_file="customer_output_1.csv"
 
 echo $CURL --user $CREDENTIALS $HOST$ENDPOINT --request POST
-
+echo
 #output=$( $CURL --user  $CREDENTIALS $HOST$ENDPOINT -i -X POST -H "Content-type: application/json" -d '{"overrides": {"writesettings": [{"path":"hdfs://localhost:50070/data/outputs/'"$output_file"'", "action": "create","format": "csv"} ]},"runParameters": {"overrides": {"data": [{"key": "filename","value": "'"$input_file"'"}]} }}')
 
 output=$( $CURL --user  $CREDENTIALS $HOST$ENDPOINT -X POST -H "Content-type: application/json")
-
+echo
 echo "Run result => $output"
+echo

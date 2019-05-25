@@ -7,7 +7,7 @@ HOST='http://trifacta601.francecentral.cloudapp.azure.com:3005'
 
 time=$(date +"%d-%m-%y %T")
 
-# ------------- Export a flow (zip package) ---------------
+echo
 
 if (( $# < 4 ));
 	then
@@ -29,6 +29,8 @@ echo
 echo "Flow ID : "$flow_id
 echo "Tag : "$tag_version
 
+
+# ------------- Export a flow (zip package) ---------------
 
 ENDPOINT="/v4/flows/$flow_id/package"
 # GET : result is a zip file

@@ -6,6 +6,8 @@ HOST='http://localhost:3005'
 
 time=$(date +"%d-%m-%y %T")
 
+echo
+
 if (( $# < 4 ));
 	then
 		echo "\nPlease call '$0 -f <flow_id> -p <folder_id>' to run this command\n"

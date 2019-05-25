@@ -6,6 +6,8 @@ HOST='http://localhost:3005'
 
 time=$(date +"%d-%m-%y %T")
 
+echo
+
 if (( $# < 4 ));
 	then
 		echo "\nPlease call '$0 -f <flow_id> -d <deploy_id>' to run this command\n"
@@ -50,3 +52,4 @@ echo
 output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT --header "Content-Type: multipart/form-data" --request POST -F data=@flows/flow_$flow_id.zip)
 echo
 echo "Deploy result => $output"
+echo
