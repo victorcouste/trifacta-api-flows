@@ -24,8 +24,8 @@ ENDPOINT="/v4/deployments/$deploy_id/valueImportRules"
 # PATCH : Json array object with mappings
 # [ {
 #     "type": "fileLocation",
-#     "on": "//dev//",
-#     "with": "/prod/"
+#     "on": "//developpement//data//",
+#     "with": "/production/data/"
 # } ]
 
 #[ {"type": "fileLocation","on": "//dev//","with": "/prod/"} ]
@@ -34,7 +34,7 @@ echo
 echo $CURL --user $CREDENTIALS $HOST$ENDPOINT --request PATCH
 echo
 
-output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT -X PATCH -H "Content-type: application/json" -d '[ {"type": "fileLocation","on": "//dev//","with": "/prod/"} ]')
+output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT -X PATCH -H "Content-type: application/json" -d '[ {"type": "fileLocation","on": "//dev//","with": "/production/data/"} ]')
 
 echo
 echo "New Import Rules result => $output"

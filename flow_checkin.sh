@@ -3,22 +3,34 @@
 CURL='/usr/bin/curl'
 CREDENTIALS='admin@trifacta.local:admin'
 HOST='http://localhost:3005'
+
+#CREDENTIALS='victor@trifacta.local:victor'
 #HOST='http://trifacta601.francecentral.cloudapp.azure.com:3005'
 
 time=$(date +"%d-%m-%y %T")
 
 # ------------- Export a flow (zip package) ---------------
 
-if [ -z "$1" ]
-  then
-    echo "\nPlease call '$0 <flow_id>' to run this command\n"
-	exit 1
+if (( $# < 4 ));
+	then
+		echo "\nPlease call '$0 -f <flow_id> -t <tag_version>' to run this command\n"
+		exit 1
    else
-    flow_id=$1
-fi
+
+		while getopts f:t: option 
+		do 
+ 			case "${option}" 
+ 			in 
+ 			f) flow_id=${OPTARG};; 
+ 			t) tag_version=${OPTARG};; 
+ 			esac 
+		done
+	fi
 
 echo
 echo "Flow ID : "$flow_id
+echo "Tag : "$tag_version
+
 
 ENDPOINT="/v4/flows/$flow_id/package"
 # GET : result is a zip file
@@ -36,6 +48,6 @@ ls -ls ./flow_$flow_id/flow_$flow_id.zip
 
 git add flow_$flow_id/flow_$flow_id.zip
 echo
-git commit -m "Version $time"
+git commit -m "$tag_version - $time"
 echo
 git push
