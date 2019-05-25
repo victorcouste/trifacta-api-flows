@@ -25,10 +25,24 @@ if (( $# < 4 ));
 echo "Flow ID : "$flow_id
 echo "Deployment ID : "$deploy_id
 
-# -------------  Checkout last version of the flow flow_id---------------
+# -------------  Checkout last version of the flow flow_id ---------------
 
 git fetch
 git checkout origin/master -- flow_$flow_id/flow_$flow_id.zip
+
+echo
+ls -ls ./flow_$flow_id/flow_$flow_id.zip
+echo
+
+
+# ---------------- Check all Import Rules ---------------
+
+echo $CURL --user $CREDENTIALS $HOST$ENDPOINT
+echo
+output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT)
+echo
+echo "Import Rules => $output"
+echo
 
 # ------------- Import a flow (zip package) in deployment project ---------------
 
@@ -42,7 +56,7 @@ ENDPOINT="/v4/deployments/$deploy_id/releases"
 #  -F data=@path/to/flow.zip
 
 echo $CURL --user $CREDENTIALS $HOST$ENDPOINT --header "Content-Type: multipart/form-data" --request POST -F data=@flow_$flow_id/flow_$flow_id.zip
-
+echo
 output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT --header "Content-Type: multipart/form-data" --request POST -F data=@flow_$flow_id/flow_$flow_id.zip)
-
+echo
 echo "Deploy result => $output"

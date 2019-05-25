@@ -11,24 +11,31 @@ time=$(date +"%d-%m-%y %T")
 
 if [ -z "$1" ]
   then
-    echo "\nPlease call '$0 <argument>' to run this command\n"
+    echo "\nPlease call '$0 <flow_id>' to run this command\n"
 	exit 1
    else
     flow_id=$1
 fi
 
+echo
+echo "Flow ID : "$flow_id
 
 ENDPOINT="/v4/flows/$flow_id/package"
 # GET : result is a zip file
 
+echo
 echo $CURL --user $CREDENTIALS $HOST$ENDPOINT -o flow_$flow_id/flow_$flow_id.zip
+echo
 
 output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT -o flow_$flow_id/flow_$flow_id.zip)
 
-echo "Export result => $output"
+echo
+ls -ls ./flow_$flow_id/flow_$flow_id.zip
 
 # -------------  Commit and Push in Github  ---------------
 
 git add flow_$flow_id/flow_$flow_id.zip
+echo
 git commit -m "Version $time"
+echo
 git push
