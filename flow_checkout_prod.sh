@@ -28,10 +28,10 @@ echo "Deployment ID : "$deploy_id
 # -------------  Checkout last version of the flow flow_id ---------------
 
 git fetch
-git checkout origin/master -- flow_$flow_id/flow_$flow_id.zip
+git checkout origin/master -- flows/flow_$flow_id.zip
 
 echo
-ls -ls ./flow_$flow_id/flow_$flow_id.zip
+ls -ls ./flows/flow_$flow_id.zip
 echo
 
 # ------------- Import a flow (zip package) in deployment project ---------------
@@ -45,8 +45,8 @@ ENDPOINT="/v4/deployments/$deploy_id/releases"
 #  -H 'content-type: multipart/form-data' \
 #  -F data=@path/to/flow.zip
 
-echo $CURL --user $CREDENTIALS $HOST$ENDPOINT --header "Content-Type: multipart/form-data" --request POST -F data=@flow_$flow_id/flow_$flow_id.zip
+echo $CURL --user $CREDENTIALS $HOST$ENDPOINT --header "Content-Type: multipart/form-data" --request POST -F data=@flows/flow_$flow_id.zip
 echo
-output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT --header "Content-Type: multipart/form-data" --request POST -F data=@flow_$flow_id/flow_$flow_id.zip)
+output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT --header "Content-Type: multipart/form-data" --request POST -F data=@flows/flow_$flow_id.zip)
 echo
 echo "Deploy result => $output"

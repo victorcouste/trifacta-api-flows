@@ -1,6 +1,0 @@
-{
-  "exception": {
-    "name": "AccessControlException",
-    "message": "Permission denied"
-  }
-}

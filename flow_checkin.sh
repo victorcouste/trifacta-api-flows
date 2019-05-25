@@ -34,17 +34,17 @@ ENDPOINT="/v4/flows/$flow_id/package"
 # GET : result is a zip file
 
 echo
-echo $CURL --user $CREDENTIALS $HOST$ENDPOINT -o flow_$flow_id/flow_$flow_id.zip
+echo $CURL --user $CREDENTIALS $HOST$ENDPOINT -o flows/flow_$flow_id.zip
 echo
 
-output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT -o flow_$flow_id/flow_$flow_id.zip)
+output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT -o flows/flow_$flow_id.zip)
 
 echo
-ls -ls ./flow_$flow_id/flow_$flow_id.zip
+ls -ls ./flows/flow_$flow_id.zip
 
 # -------------  Commit and Push in Github  ---------------
 
-git add flow_$flow_id/flow_$flow_id.zip
+git add flows/flow_$flow_id.zip
 echo
 git commit -m "$tag_version - $time"
 echo
