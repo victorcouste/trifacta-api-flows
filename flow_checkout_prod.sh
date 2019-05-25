@@ -34,16 +34,6 @@ echo
 ls -ls ./flow_$flow_id/flow_$flow_id.zip
 echo
 
-
-# ---------------- Check all Import Rules ---------------
-
-echo $CURL --user $CREDENTIALS $HOST$ENDPOINT
-echo
-output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT)
-echo
-echo "Import Rules => $output"
-echo
-
 # ------------- Import a flow (zip package) in deployment project ---------------
 
 # Deploy a flow package

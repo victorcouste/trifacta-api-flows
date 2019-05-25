@@ -20,32 +20,36 @@ fi
 echo
 echo "Deployment ID : "$deploy_id
 
+#-------------- FileLocation -----------------
+
 ENDPOINT="/v4/deployments/$deploy_id/valueImportRules"
 # PATCH : Json array object with mappings
 # [ {
 #     "type": "fileLocation",
-#     "on": "//developpement//data//",
-#     "with": "/production/data/"
+#     "on": "//developpement//",
+#     "with": "/production/"
 # } ]
 
-#[ {"type": "fileLocation","on": "//dev//","with": "/prod/"} ]
+#[ {"type": "fileLocation","on": "//developpement//","with": "/production/"} ]
 
 echo
 echo $CURL --user $CREDENTIALS $HOST$ENDPOINT --request PATCH
 echo
+output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT -X PATCH -H "Content-type: application/json" -d '[ {"type": "fileLocation","on": "//developpement//","with": "/production/"} ]')
+echo
+echo "Import File Locatiopn Rules result => $output"
 
-output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT -X PATCH -H "Content-type: application/json" -d '[ {"type": "fileLocation","on": "//dev//","with": "/production/data/"} ]')
+#------------------- Connections -----------------
+
+ENDPOINT="/v4/deployments/$deploy_id/objectImportRules"
+
+#[{"tableName":"connections","onCondition":{"uuid":"2d7c1650-7daa-11e9-b9eb-0fd11bed75ab"},"withCondition":{"id":11}}]
 
 echo
-echo "New Import Rules result => $output"
-
-
-# ----------- Check all Import Rules --------------
-
+echo $CURL --user $CREDENTIALS $HOST$ENDPOINT --request PATCH
 echo
-echo $CURL --user $CREDENTIALS $HOST$ENDPOINT
+output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT -X PATCH -H "Content-type: application/json" -d '[{"tableName":"connections","onCondition":{"uuid":"2d7c1650-7daa-11e9-b9eb-0fd11bed75ab"},"withCondition":{"id":11}}]')
 echo
-output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT)
-echo
-echo "Import Rules => $output"
+echo "Import Connections Rules result => $output"
+
 echo

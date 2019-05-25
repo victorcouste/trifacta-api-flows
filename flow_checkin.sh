@@ -2,10 +2,8 @@
 #!/bin/bash      
 CURL='/usr/bin/curl'
 CREDENTIALS='admin@trifacta.local:admin'
-HOST='http://localhost:3005'
-
-#CREDENTIALS='victor@trifacta.local:victor'
-#HOST='http://trifacta601.francecentral.cloudapp.azure.com:3005'
+#HOST='http://localhost:3005'
+HOST='http://trifacta601.francecentral.cloudapp.azure.com:3005'
 
 time=$(date +"%d-%m-%y %T")
 
