@@ -12,13 +12,13 @@ echo
 
 if [ -z "$1" ]
   then
-    echo "\nPlease call '$0 <deploy_id>' to run this command\n"
+    echo "Please call '$0 <deploy_id>' to run this command"
+    echi
 	exit 1
    else
     deploy_id=$1
 fi
 
-echo
 echo "Deployment ID : "$deploy_id
 
 #-------------- FileLocation -----------------

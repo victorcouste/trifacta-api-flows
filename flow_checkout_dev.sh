@@ -10,7 +10,8 @@ echo
 
 if (( $# < 4 ));
 	then
-		echo "\nPlease call '$0 -f <flow_id> -p <folder_id>' to run this command\n"
+		echo "Please call '$0 -f <flow_id> -p <folder_id>' to run this command"
+		echo
 		exit 1
    else
 

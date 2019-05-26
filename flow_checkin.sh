@@ -11,7 +11,8 @@ echo
 
 if (( $# < 4 ));
 	then
-		echo "\nPlease call '$0 -f <flow_id> -t <tag_version>' to run this command\n"
+		echo "Please call '$0 -f <flow_id> -t <tag_version>' to run this command"
+		echo
 		exit 1
    else
 
@@ -25,7 +26,6 @@ if (( $# < 4 ));
 		done
 	fi
 
-echo
 echo "Flow ID : "$flow_id
 echo "Tag : "$tag_version
 
@@ -51,3 +51,4 @@ echo
 git commit -m "$tag_version - $time"
 echo
 git push
+echo
