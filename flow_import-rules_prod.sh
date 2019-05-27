@@ -2,7 +2,8 @@
 #!/bin/bash      
 CURL='/usr/bin/curl'
 CREDENTIALS='deploy@trifacta.local:deploy'
-HOST='http://localhost:3005'
+HOST='http://prod_env_server:3005'
+#HOST='http://localhost:3005'
 
 time=$(date +"%d-%m-%y %T")
 
@@ -27,16 +28,16 @@ ENDPOINT="/v4/deployments/$deploy_id/valueImportRules"
 # PATCH : Json array object with mappings
 # [ {
 #     "type": "fileLocation",
-#     "on": "//developpement//",
+#     "on": "//development//",
 #     "with": "/production/"
 # } ]
 
-#[ {"type": "fileLocation","on": "//developpement//","with": "/production/"} ]
+#[ {"type": "fileLocation","on": "//development//","with": "/production/"} ]
 
 echo
-echo $CURL --user $CREDENTIALS $HOST$ENDPOINT --request PATCH
+echo $CURL --user $CREDENTIALS $HOST$ENDPOINT --request PATCH -H "Content-type: application/json" -d '[ {"type": "fileLocation","on": "//development//","with": "/production/"} ]'
 echo
-output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT -X PATCH -H "Content-type: application/json" -d '[ {"type": "fileLocation","on": "//developpement//","with": "/production/"} ]')
+output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT -X PATCH -H "Content-type: application/json" -d '[ {"type": "fileLocation","on": "//development//","with": "/production/"} ]')
 echo
 echo "Import File Locatiopn Rules result => $output"
 
@@ -47,7 +48,7 @@ ENDPOINT="/v4/deployments/$deploy_id/objectImportRules"
 #[{"tableName":"connections","onCondition":{"uuid":"2d7c1650-7daa-11e9-b9eb-0fd11bed75ab"},"withCondition":{"id":11}}]
 
 echo
-echo $CURL --user $CREDENTIALS $HOST$ENDPOINT --request PATCH
+echo $CURL --user $CREDENTIALS $HOST$ENDPOINT --request PATCH -H "Content-type: application/json" -d '[{"tableName":"connections","onCondition":{"uuid":"2d7c1650-7daa-11e9-b9eb-0fd11bed75ab"},"withCondition":{"id":11}}]'
 echo
 output=$( $CURL --user $CREDENTIALS $HOST$ENDPOINT -X PATCH -H "Content-type: application/json" -d '[{"tableName":"connections","onCondition":{"uuid":"2d7c1650-7daa-11e9-b9eb-0fd11bed75ab"},"withCondition":{"id":11}}]')
 echo

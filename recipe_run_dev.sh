@@ -1,7 +1,8 @@
 #!/bin/bash      
 CURL='/usr/bin/curl'
-CREDENTIALS='admin@trifacta.local:admin'
-HOST='http://localhost:3005'
+CREDENTIALS='victor@trifacta.local:victor'
+HOST='http://dev_env_server:3005'
+#HOST='http://localhost:3005'
 
 time=$(date +"%d-%m-%y %T")
 
@@ -26,12 +27,12 @@ ENDPOINT="/v4/jobGroups"
 
 #{  "wrangledDataset": {"id": 114 }, "overrides": { "execution": "photon", "profiler": false,"writesettings": [{"path":"data/outputs/customer_output.csv", "action": "create","format": "csv"} ]}"runParameters": {"overrides": {"data": [{"key": "filename","value": "customer_1.csv"}]} }}
 
-contrats="Contrats_Prod"
+contracts="Contracts_Prod"
 
-echo $CURL --user $CREDENTIALS $HOST$ENDPOINT --request POST  -H "Content-type: application/json" -d '{"wrangledDataset": {"id": '"$recipe_id"' }, "runParameters": {"overrides": {"data": [{"key": "Fichier_Contrats","value": "'"$contrats"'"}]} }}'
+echo $CURL --user $CREDENTIALS $HOST$ENDPOINT --request POST  -H "Content-type: application/json" -d '{"wrangledDataset": {"id": '"$recipe_id"' }, "runParameters": {"overrides": {"data": [{"key": "Contracts_File","value": "'"$contracts"'"}]} }}'
 echo
 
-output=$( $CURL --user  $CREDENTIALS $HOST$ENDPOINT -X POST -H "Content-type: application/json"  -d '{"wrangledDataset": {"id": '"$recipe_id"' }, "runParameters": {"overrides": {"data": [{"key": "Fichier_Contrats","value": "'"$contrats"'"}]} }}')
+output=$( $CURL --user  $CREDENTIALS $HOST$ENDPOINT -X POST -H "Content-type: application/json"  -d '{"wrangledDataset": {"id": '"$recipe_id"' }, "runParameters": {"overrides": {"data": [{"key": "Contracts_File","value": "'"$contracts"'"}]} }}')
 echo
 echo "Run result => $output"
 echo

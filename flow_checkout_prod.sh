@@ -2,7 +2,8 @@
 #!/bin/bash      
 CURL='/usr/bin/curl'
 CREDENTIALS='deploy@trifacta.local:deploy'
-HOST='http://localhost:3005'
+HOST='http://prod_env_server:3005'
+#HOST='http://localhost:3005'
 
 time=$(date +"%d-%m-%y %T")
 

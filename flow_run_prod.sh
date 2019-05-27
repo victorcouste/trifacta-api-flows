@@ -2,7 +2,8 @@
 #!/bin/bash      
 CURL='/usr/bin/curl'
 CREDENTIALS='deploy@trifacta.local:deploy'
-HOST='http://localhost:3005'
+HOST='http://prod_env_server:3005'
+#HOST='http://localhost:3005'
 
 time=$(date +"%d-%m-%y %T")
 
@@ -41,12 +42,12 @@ ENDPOINT="/v4/deployments/$deploy_id/run"
 #]} }
 #} }
 
-contrats="Contrats_Prod"
+contracts="Contracts_Prod.csv"
 
-echo $CURL --user $CREDENTIALS $HOST$ENDPOINT --request POST  -H "Content-type: application/json" -d '{"runParameters": {"overrides": {"data": [{"key": "Fichier_Contrats","value": "'"$contrats"'"}]} }}'
+echo $CURL --user $CREDENTIALS $HOST$ENDPOINT --request POST  -H "Content-type: application/json" -d '{"runParameters": {"overrides": {"data": [{"key": "Contracts_File","value": "'"$contracts"'"}]} }}'
 echo
 
-output=$( $CURL --user  $CREDENTIALS $HOST$ENDPOINT -X POST -H "Content-type: application/json"  -d '{"runParameters": {"overrides": {"data": [{"key": "Fichier_Contrats","value": "'"$contrats"'"}]} }}')
+output=$( $CURL --user  $CREDENTIALS $HOST$ENDPOINT -X POST -H "Content-type: application/json"  -d '{"runParameters": {"overrides": {"data": [{"key": "Contracts_File","value": "'"$contracts"'"}]} }}')
 echo
 echo "Run result => $output"
 echo
