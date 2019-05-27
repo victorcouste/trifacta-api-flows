@@ -1,5 +1,5 @@
 
-#!/bin/bash      
+#!/bin/bash
 CURL='/usr/bin/curl'
 CREDENTIALS='admin@trifacta.local:admin'
 #HOST='http://localhost:3005'
@@ -16,7 +16,7 @@ if (( $# < 4 ));
 		exit 1
    else
 
-		while getopts f:t: option 
+		while getopts f:t: option
 		do 
  			case "${option}" 
  			in 
