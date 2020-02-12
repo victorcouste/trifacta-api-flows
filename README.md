@@ -11,3 +11,5 @@ Scripts using Trifacta REST API to deploy and run a Trifacta flow from developme
 - **flow_checkout_prodv.sh -f <flow_id> -d <deploy_id>** : Checkout last version of <flow_id> from Github and deploy it in Trifacta <deploy_id> production deployment.
 - **flow_run_prod.sh <deploy_id>** : Run last version of flow in <deploy_id> production deployment.
 - **recipe_run_dev.sh <recipe_id**> : Run recipe <recipe_id> in development.
+
+Extra script **AllFlows_Migration.sh**  to migrate all flows from an environment to another one.
