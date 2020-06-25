@@ -3,7 +3,7 @@
 
 ![Trifacta logo](trifactalogo.png)
 
-Scripts using Trifacta REST API to deploy and run a Trifacta flow from development to production environment with flow package backup and versioning with Github.
+Scripts using Trifacta REST API (https://api.trifacta.com/) to deploy and run a Trifacta flow from development to production environment with flow package backup and versioning with Github.
 
 - **flow_checkin.sh <flow_id>** : Export Trifacta flow <flow_id> and checkin (commit+push) in Github <flow_id> folder.
 - **flow_import-rules_prod.sh <deploy_id>** : Create import rules for values (Bucket, FileLocation) and objects (Connections) for <deploy_id> production deployment.
