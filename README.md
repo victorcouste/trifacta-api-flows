@@ -1,4 +1,4 @@
-# trifacta-flows
+# Examples for Trifacta REST API use cases
 
 
 ![Trifacta logo](trifactalogo.png)
